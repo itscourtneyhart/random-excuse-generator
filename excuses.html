@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Excuse Generator</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #excuse {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Need an Excuse?</h1>
+  <button onclick="generateExcuse()">Generate Excuse</button>
+  <div id="excuse">Click the button to get started!</div>
+
+  <script>
+    const excuses = [
+      "I was abducted by a rogue flock of pigeons.",
+      "My socks staged a rebellion and hid.",
+      "I got lost in a YouTube spiral about cats.",
+      "My goldfish demanded a therapy session.",
+      "I accidentally joined a cult of lawnmowers.",
+      "My alarm clock filed for divorce.",
+      "I was trapped in a debate with my houseplant.",
+      "A rogue cloud followed me home.",
+      "I had to negotiate peace with my Wi-Fi router.",
+      "My shadow quit and left me stranded.",
+      "I slipped into a parallel universe of bad Wi-Fi.",
+      "My dog ate my motivation.",
+      "I got stuck reenacting a shampoo commercial.",
+      "A squirrel stole my car keys.",
+      "I was late because I overslept my nap.",
+      "My fridge started a band and I had to watch.",
+      "I got distracted by a conspiracy about spoons.",
+      "My pillow held me hostage.",
+      "I was busy teaching my cat to moonwalk.",
+      "A time-traveling toaster rewrote my morning.",
+      "My chair challenged me to a staring contest.",
+      "A wild grapefruit framed me for tax evasion.",
+      "My toothbrush ghosted me mid-brush.",
+      "I was ambushed by a gang of feral dust bunnies.",
+      "My coffee mug unionized and went on strike.",
+      "I had to bail my hamster out of tiny jail.",
+      "A rogue shoelace tied me to my bedpost.",
+      "My ceiling fan started whispering secrets.",
+      "I got lost in a daydream about sentient tacos.",
+      "My mailbox declared itself a sovereign nation.",
+      "I was late because my mirror kept flirting.",
+      "A flock of geese hired me as their lawyer.",
+      "My slippers staged a sit-in.",
+      "I had to mediate a feud between my forks.",
+      "A rogue balloon floated me to the roof.",
+      "My headphones rewrote my playlist with polka.",
+      "I was detained by a militant flock of sparrows.",
+      "My laundry basket ate my favorite shirt.",
+      "I got stuck in a loop of sneezing at dust.",
+      "My lamp wrote a manifesto and quit.",
+      "A raccoon stole my lunch and my dignity.",
+      "My keyboard rebelled with only emojis.",
+      "I was late because my couch hugged me too tight.",
+      "A sentient potato judged my life choices.",
+      "My socks held a séance without me.",
+      "I got trapped in a staring contest with a moth.",
+      "My blender started a podcast mid-smoothie.",
+      "A cloud shaped like a duck guilt-tripped me.",
+      "My shoelaces conspired to trip me all day.",
+      "I had to rescue my dignity from a puddle.",
+      "My phone autocorrected me into oblivion.",
+      "A rogue breeze stole my grocery list.",
+      "My cat hired me as its personal stylist.",
+      "I was late because my fridge sang opera.",
+      "A swarm of ladybugs adopted me as their queen.",
+      "My toaster challenged me to a duel at dawn.",
+      "I got lost in a maze of my own shoestrings.",
+      "My rug declared war on my vacuum.",
+      "A pigeon stole my bus pass and flew off.",
+      "My alarm clock ghosted me for a newer model.",
+      "I was delayed by a philosophical pigeon.",
+      "My chair squeaked until I apologized.",
+      "A rogue sock puppet held me at sock-point.",
+      "My Wi-Fi router joined a book club.",
+      "I had to break up a fight between my pens.",
+      "A sentient grapefruit rolled me into traffic.",
+      "My curtains staged a dramatic blackout.",
+      "I was late because my dog ate my shoelaces.",
+      "A flock of crows judged my outfit harshly.",
+      "My microwave started a revolution.",
+      "I got stuck in a loop of bad puns.",
+      "My bed refused to let me leave its embrace.",
+      "A rogue paperclip held my notes hostage.",
+      "My socks unionized and demanded better lint.",
+      "A sentient cucumber led me on a wild goose chase.",
+      "My doorbell prank-called me all morning.",
+      "I was late because my shadow overslept.",
+      "A flock of seagulls stole my parking spot.",
+      "My toothpaste staged a slippery escape.",
+      "I got distracted by a cloud shaped like a fist.",
+      "My wallet ran away to join the circus.",
+      "A rogue tomato splattered my alibi.",
+      "My curtains conspired to block out reality.",
+      "I was ambushed by a choir of singing forks.",
+      "My broom swept me under the rug.",
+      "A militant moth ate my favorite sweater.",
+      "My fridge door slammed me into next week.",
+      "I had to fend off a gang of jealous spoons.",
+      "My socks wrote a diss track about my shoes.",
+      "A rogue pinecone framed me for littering.",
+      "My printer jammed with existential dread.",
+      "I was late because my cat napped on my keys.",
+      "A sentient waffle iron burned my alibi.",
+      "My rug tripped me into a Netflix binge.",
+      "I got lost in a feud between my salt shakers.",
+      "My hoodie staged a coup against my jacket.",
+      "A flock of butterflies unionized mid-flight.",
+      "My clock ticked me into a parallel Tuesday.",
+      "I was detained by a posse of angry lint balls.",
+      "My lamp flickered me into a disco trance.",
+      "A rogue zucchini hijacked my grocery cart.",
+      "My shoes squeaked their way out of blame.",
+      "I had to negotiate with a militant dustpan.",
+      "My calendar ghosted me for a leap year.",
+      "A sentient stapler pinned me to my desk.",
+      "My socks slid me into a conspiracy hole.",
+      "I was late because my dog barked at nothing.",
+      "A rogue bookmark lost me in chapter five.",
+      "My kettle whistled me into a tea coma.",
+      "I got trapped in a loop of rogue static.",
+      "My chair rolled me into a meeting with fate.",
+      "A flock of robins audited my birdfeeder.",
+      "My toothpaste tube squeezed out my excuse.",
+      "I was ambushed by a gang of rogue receipts.",
+      "My pillowcase smothered me with dreams.",
+      "A sentient banana slipped me into chaos.",
+      "My light switch flipped me into darkness.",
+      "I had to dodge a swarm of judgmental bees.",
+      "My rug unraveled my entire morning.",
+      "A rogue teacup spilled my best intentions.",
+      "My socks shuffled me into a parallel sockverse.",
+      "I was late because my lamp dimmed my will.",
+      "A flock of owls debated my bedtime.",
+      "My blender pulsed me into a smoothie vortex.",
+      "I got stuck in a standoff with my mailbox.",
+      "My headphones tangled me into submission.",
+      "A rogue mothball rolled me into a closet.",
+      "I had to outrun a gang of sentient coasters.",
+      "My clock hands spun me into last week.",
+      "A sentient carrot critiqued my chopping skills.",
+      "My shoes staged a walkout mid-stride.",
+      "I was late because my fridge hummed me to sleep.",
+      "A rogue rubber duck sank my alibi.",
+      "My curtains fluttered me into a nap trap.",
+      "I got lost in a duel with my own reflection.",
+      "My socks knitted me into a time warp.",
+      "A flock of sparrows picketed my windowsill.",
+      "My toaster popped me into a bread feud.",
+      "I was delayed by a sentient lint roller.",
+      "My chair creaked me into a guilt trip.",
+      "A rogue paper towel wiped out my plans."
+    ];
+
+    function generateExcuse() {
+      const randomIndex = Math.floor(Math.random() * excuses.length);
+      const excuseText = excuses[randomIndex];
+      document.getElementById("excuse").innerText = excuseText;
+    }
+  </script>
+</body>
+</html>
